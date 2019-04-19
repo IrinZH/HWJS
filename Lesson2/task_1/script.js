@@ -18,26 +18,12 @@ for (let i = 0; i < 2; i++) {
       if (typeof(a) === 'string' && typeof(a) != null && typeof(b) != null && isNaN(b) == false && b >= 0 && a != '' && b != '' && a.length < 50) {
       console.log("done");
       appData.expenses[a] = b;
-      
   } else {
+    alert("Название статьи расходов не должно быть пустым или быть больше 50 символов, а числовое значение суммы расходов должно быть больше 0");
+    --i;
+    }
+  }
 
-    if (typeof(a) != null || a != '' || a.length < 50)  {
-      alert("Название статьи расходов не должно быть пустым или больше 50 символов");
-    }
-    if (isNaN(b) == true || b <= 0  || typeof(b) != null || b != '') {
-      alert("Числовое значение суммы расходов должно быть больше 0");
-    }
-
-    let result = confirm("Заполните еще раз данные о расходах?"); {
-      if (result == true) {
-      --i;
-      }
-      else {
-      console.log("done");
-      }
-    }
-  }    
-}
 
 /* let i = 0;
 while (i < 2) {
@@ -45,27 +31,14 @@ while (i < 2) {
       b = +prompt("Сумма расходов", "");
       i++;
       if (typeof(a) === 'string' && typeof(a) != null && typeof(b) != null && isNaN(b) == false && b >= 0 && a != '' && b != '' && a.length < 50) {
-      console.log("done");
-      appData.expenses[a] = b;
-      
-    } else {
-      if (typeof(a) != null || a != '' || a.length < 50)  {
-        alert("Название статьи расходов не должно быть пустым или больше 50 символов");
-      }
-      if (isNaN(b) == true || b <= 0  || typeof(b) != null || b != '') {
-        alert("Числовое значение суммы расходов должно быть больше 0");
-      }
-  
-      let result = confirm("Заполните еще раз данные о расходах?"); {
-        if (result == true) {
-        --i;
-        }
-        else {
         console.log("done");
-        }
+        appData.expenses[a] = b;
+    } else {
+      alert("Название статьи расходов не должно быть пустым или быть больше 50 символов, а числовое значение суммы расходов должно быть больше 0");
+      --i;
       }
-  }
-}     */
+  } */
+
 
 /* let i = 0;
 do {
@@ -75,25 +48,11 @@ do {
       if (typeof(a) === 'string' && typeof(a) != null && typeof(b) != null && isNaN(b) == false && b >= 0 && a != '' && b != '' && a.length < 50) {
       console.log("done");
       appData.expenses[a] = b;
-      
-    } else {
-      if (typeof(a) != null || a != '' || a.length < 50)  {
-        alert("Название статьи расходов не должно быть пустым или больше 50 символов");
+      } else {
+      alert("Название статьи расходов не должно быть пустым или быть больше 50 символов, а числовое значение суммы расходов должно быть больше 0");
+      --i;
       }
-      if (isNaN(b) == true || b <= 0  || typeof(b) != null || b != '') {
-        alert("Числовое значение суммы расходов должно быть больше 0");
-      }
-  
-      let result = confirm("Заполните еще раз данные о расходах?"); {
-        if (result == true) {
-        --i;
-        }
-        else {
-        console.log("done");
-        }
-      }
-  }
-}
+    }
 while (i < 2); */
 
 appData.moneyPerDay = +((appData.budget / 30).toFixed(2));
