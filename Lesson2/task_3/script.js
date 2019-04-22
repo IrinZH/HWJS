@@ -1,9 +1,8 @@
 'use strict';
 let week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", 
 "Friday", "Saturday"],
-    today = week[new Date().getDay()],
+    today = week[new Date().getDay()];
     //текущий день недели, правильно показывает если неделя с воскресенья))
-    item;
 
 week.forEach(function(item) {
   let span = document.createElement('span');
@@ -37,5 +36,3 @@ week.forEach(function(item) {
       console.log("число начинается с 3 или с 7 :\n" + e);
     }
   });
-
-
