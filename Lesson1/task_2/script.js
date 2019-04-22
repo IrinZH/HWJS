@@ -13,5 +13,6 @@ let res3 = result**3,
     n = 2;
 console.log("первые две цифры числа " + result +", возведенного в 3 степень: " + arrRes3.slice(0, n));
 
+// console.log((num.toString().split('').reduce( (a,b) => a * b)** 3 ).toString().slice(0,2)); короткий вариант
 
 
