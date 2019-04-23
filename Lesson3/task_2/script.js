@@ -2,17 +2,21 @@
 
 //1)
 let str = "урок-3-был слишком легким";
-str = str[0].toUpperCase() + str.substring(1); //Метод substring(start, end) возвращает подстроку с позиции start до, но не включая end(тут до конца строки)
+str = str.slice(0,1).toUpperCase() + str.slice(1);
+// str = str.substring(0,1).toUpperCase() + str.substring(1); или так
 console.log('1) ', str);
 //2)
 str = str.replace(/-/g, ' ');
 console.log('2) ', str);
 //3)
-str = str.replace(/легким/g, '');
-console.log('3) ', str);
-let str1 = 'легким';
-str1 = str1.substr(0, 4) + 'о'; //substr(start [, length]) возвращает подстроку с позиции start, второй аргумент - количество возвращаемых символов.
-console.log(str1);
+let str1;
+str1 = str.slice(0,(str.lastIndexOf(' ') + 1));
+// console.log('3) ', str1);
+let str2;
+str2 = str.slice(str.lastIndexOf(' ') + 1); // получили легким - часть строки начиная с после последнего пробела
+str2 = str2.slice(0,-2) + 'оо';   //отрезали 2 последних символа и прибавили "00"
+// str2 = str.slice(str.lastIndexOf(' ') + 1).slice(0,-2) + 'оо'; то же самое в одну строчку
+console.log('3) ', str1 + " " + str2);
 //4)
 let arr = [20, 33, 1, "Человек", 2, 3],
     result = 0;
@@ -24,7 +28,6 @@ if (typeof item == 'number' && !isNaN(item)){
 result = Math.sqrt(result);
 console.log('4) ', result);
 //5)
-
 // let text =" 234567890123456789 123456789 123456789 12345678901234";
 let text = prompt('введите произвольный текст');
 
