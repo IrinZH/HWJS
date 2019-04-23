@@ -82,6 +82,3 @@ function chooseOptExpenses() {
 chooseOptExpenses();
 
 console.log(appData);
-
-
-
