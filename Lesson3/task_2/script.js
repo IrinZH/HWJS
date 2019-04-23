@@ -14,7 +14,7 @@ str1 = str.slice(0,(str.lastIndexOf(' ') + 1));
 // console.log('3) ', str1);
 let str2;
 str2 = str.slice(str.lastIndexOf(' ') + 1); // получили легким - часть строки начиная с после последнего пробела
-str2 = str2.slice(0,-2) + 'оо';   //отрезали 2 последних символа и прибавили "00"
+str2 = str2.slice(0,-2) + 'оо';   //отрезали 2 последних символа и прибавили "оо"
 // str2 = str.slice(str.lastIndexOf(' ') + 1).slice(0,-2) + 'оо'; то же самое в одну строчку
 console.log('3) ', str1 + " " + str2);
 //4)
