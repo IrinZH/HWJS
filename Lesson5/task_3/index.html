@@ -7,25 +7,22 @@
   <title>5 урок по JS усложненное задание </title>
 </head>
 <body>
-    <section class="main">
-        <article class="dates">
-            <label>
-                <span>День 1</span><br>
-                <input type="date">
-            </label><br>
+  <div>Текущее время/дата: <span id='now'></span></div><br>
+  <div>Сегодня: <span id='today'></span></div><br>
+  
+	<label>Введите 1-ю дату
+		<input type="date">
+    </label><br>	
+			
+	<label>Введите 2-ю дату
+		<input type="date">
+    </label><br>
 
-            <label>
-                <span>День 2</span><br>
-                <input type="date">
-            </label><br>
+<label>
+    <span>Разница в днях между датами :</span>
+    <input id="output" type="number" disabled>
+</label>
 
-            <label>
-                <span>Дней между 1 и 2</span><br>
-                <input type="text" disabled>
-            </label>
-        </article>
-        <article class="output"></article>
-    </section>
   <script src="script.js"></script>
 </body>
 </html>
