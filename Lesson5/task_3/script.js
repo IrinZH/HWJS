@@ -17,14 +17,71 @@
 
 6) Добавить папку с усложненным заданием в свой репозиторий на GitHub
 
-
+*/
 let data = new Date(),
     year = data.getFullYear(),
     month = data.getMonth(),
     day = data.getDate(),
     hour = data.getHours(),
     minutes = data.getMinutes(),
-    seconds = data.getSeconds();
+    seconds = data.getSeconds(),
+    week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", 
+    "Суббота"],
+    today = week[new Date().getDay()],
 
-  console.log(hour + ":"+ minutes + ":" + seconds + " " + day + "." + (month+1) + "." + year); */
- 
+    dates = document.querySelectorAll('input'),
+    day1 = dates[0].valueAsDate,
+    day2 = dates[1].valueAsDate;
+     
+function addZero(num){
+if (String(num).length == 1) {num = '0' + num;}
+return num;
+};
+
+function weekDay(day) {
+  document.getElementById('today').innerHTML = today;
+}
+weekDay(day);
+
+console.log(addZero(hour) + ":"+ addZero(minutes) + ":" + addZero(seconds) + " " + addZero(day) + "." + addZero(month+1) + "." + year);
+document.getElementById('now').innerHTML = addZero(hour) + ":"+ addZero(minutes) + ":" + addZero(seconds) + " " + addZero(day) + "." + addZero(month+1) + "." + year;
+
+function countDays(x, y) {
+  return Math.abs((y - x) / (1000*60*60*24));
+  //Math.abs() возвращает абсолютное значение числа
+  //(1000*60*60*24)) перевод миллисекунд в дни
+}
+
+dates[0].addEventListener('change', () => {
+    day1 = dates[0].valueAsDate;
+    if (day1 != null && day2 != null) {
+      dates[2].value = countDays(day1, day2);
+    }
+    if (day1 === null || day2 === null) {
+      dates[2].value = null;
+    }
+    if (day1 === null && day2 === null) {
+      dates[2].value = null;
+    }
+});
+
+dates[1].addEventListener('change', () => {
+    day2 = dates[1].valueAsDate;
+    if (day1 != null && day2 != null) {
+      dates[2].value = countDays(day1, day2);
+      }
+    if (day1 === null || day2 === null) {
+      dates[2].value = null;
+    }
+    if (day1 === null && day2 === null) {
+      dates[2].value = null;
+    }
+});
+
+
+
+
+
+
+
+
