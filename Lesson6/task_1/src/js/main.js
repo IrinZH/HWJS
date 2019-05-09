@@ -78,8 +78,8 @@ expensesItemInput.forEach(function (item, i, array) {
               "linear-gradient(336deg,#ffbd75,#ff964b),linear-gradient(#fff,#fff)";
               countBtn.disabled = false;
       } 
-      if ((array[0].value == "" && array[1].value != "" && array[2].value != "" && array[3].value != "") || (array[0].value != "" && array[1].value == ""  && array[2].value != "" && array[3].value != "") || (array[0].value != "" && array[1].value != ""  && array[2].value == "" && array[3].value != "") || (array[0].value != "" && array[1].value != ""  && array[2].value != "" && array[3].value == "")) {
-      
+      if ((array[0].value == "" && array[1].value != "" && array[2].value != "" && array[3].value != "") || (array[0].value != "" && array[1].value == ""  && array[2].value != "" && array[3].value != "") || (array[0].value != "" && array[1].value != ""  && array[2].value == "" && array[3].value != "") || (array[0].value != "" && array[1].value != ""  && array[2].value != "" && array[3].value == "") || 
+      (array[0].value != "" && array[1].value == "" && array[2].value == "" && array[3].value == "") || (array[0].value == "" && array[1].value != ""  && array[2].value == "" && array[3].value == "") || (array[0].value == "" && array[1].value == ""  && array[2].value != "" && array[3].value == "") || (array[0].value == "" && array[1].value == ""  && array[2].value == "" && array[3].value != ""))   {
           expensesBtn.disabled = true;
           expensesBtn.style.backgroundImage = "none";
           countBtn.disabled = true;
