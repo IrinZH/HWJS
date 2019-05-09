@@ -7,42 +7,8 @@
 //git push
 
 
-/*
-1) Добавить весь функционал, повторяя за видео
 
-2) Если программа еще не запущена( не нажали кнопку "Начать расчет") или нужное(соответственное) для заполнения поле пустое - сделать кнопки неактивными. (Например, если ни одно поле обязательных расходов не заполнено - блокируем кнопку "Утвердить")
-
-3) Реализовать функционал: при расчете дневного бюджета учитывать сумму обязательных трат (т. e. от бюджета на месяц отнимаем общую сумму всех обяз. трат и ее делим на 30 дней)
-
-4) Проверить, чтобы все работало и не было ошибок в консоли
-
-5) Добавить папку с уроком на свой GitHub
-
-6) Ознакомиться с объектом Date
-
-*/
-
-/*
-ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ:
-1) Сделать так, чтобы в поля "необязательные расходы" можно было использовать только русские буквы
-
-·        Ничего кроме букв ввести нельзя.
-
-·        При повторном нажатии на кнопку “Утвердить” - необязательные расходы перезаписываются заново
-
-2) Сделать так, чтобы в разделе "Введите обязательные расходы" в поля с ценами можно было вводить только цифры.
-
-
-3) Стилизовать проект на свой вкус (оставляем функционал - внешний вид меняем как хотим и чем хотим. P.S. Не нужно извращаться и менять все через JS)
-
-4) Проверить, чтобы все работало и не было ошибок в консоли
-
-5) Добавить папку с усложненным заданием в свой репозиторий на GitHub
-*/
-
-
-let inputs = document.getElementsByTagName('input'),
-  startBtn = document.querySelector('#start'),
+let startBtn = document.querySelector('#start'),
   budgetValue = document.querySelector('.budget-value'),
   dayBudgetValue = document.querySelector('.daybudget-value'),
   levelValue = document.querySelector('.level-value'),
@@ -51,7 +17,7 @@ let inputs = document.getElementsByTagName('input'),
   incomeValue = document.querySelector('.income-value'),
   monthsavingsValue = document.querySelector('.monthsavings-value'),
   yearsavingsValue = document.querySelector('.yearsavings-value'),
-  expensesItemInput = document.querySelectorAll('input.expenses-item'),
+  expensesItemInput = document.querySelectorAll('.expenses-item'),
   expensesBtn = document.querySelectorAll('button')[0],
   optExpensesBtn = document.querySelectorAll('button')[1],
   countBtn = document.querySelectorAll('button')[2],
@@ -64,12 +30,23 @@ let inputs = document.getElementsByTagName('input'),
   monthInput = document.querySelector('.month-value'),
   dayInput = document.querySelector('.day-value');
 
-  /* expensesBtn.disabled = true;
+  expensesBtn.disabled = true;
+  expensesBtn.style.backgroundImage = "none";
   optExpensesBtn.disabled = true;
-  countBtn.disabled = true; */
+  optExpensesBtn.style.backgroundImage = "none";
+  countBtn.disabled = true;
+  countBtn.style.backgroundImage = "none";
 
-let money, time;
-
+  // отключаем все инпуты
+let elem, 
+    inputs = document.getElementsByTagName('input');
+    for (elem of inputs) {
+      elem.disabled = true;
+  }
+  
+  
+  //стартовая кнопка начать расчет
+  let money, time;
   startBtn.addEventListener("click", function () {
   while(time == "" || time == null) {
     time = prompt("Введите дату в формате YYYY-MM-DD", "");
@@ -85,54 +62,76 @@ let money, time;
   dayInput.value = new Date(Date.parse(time)).getDate();
   startBtn.disabled = true;
   startBtn.style.backgroundImage = "none";
+  for (elem of inputs){
+    elem.disabled = false;
+  }
 });
 
 // Обязательные расходы
-expensesBtn.addEventListener('click', function() {
-  let sum = 0;
-  for (let i = 0; i < expensesItemInput.length; i++) {
-    let a, b;
-    a = expensesItemInput[i].value;
-    b = expensesItemInput[++i].value;
-    if (typeof(a) === 'string' && typeof(a) != null && typeof(b) != null && isNaN(b) == false && b >= 0 && a != '' && b != '' && a.length < 50) {
-      expensesBtn.disabled = false;
-      // expensesBtn.style.backgroundImage = 'linear-gradient(336deg, #ffbd75, #ff964b), linear-gradient(#ffffff, #ffffff)';
-      appData.expenses[a] = b;
-      sum += +b;
-    } else {
-      expensesBtn.style.backgroundImage = "none";
-      alert("Название статьи расходов не должно быть пустым или быть больше 50 символов, а числовое значение суммы расходов должно быть больше 0");
-      --i;
-    }
-  }
-  expensesValue.textContent = sum.toFixed(2);
-});
-
 expensesItemInput.forEach(function (item, i, array) {
   item.addEventListener('input', function () {
-      if ((array[0].value != "" && array[1].value != "") &&
-          (array[2].value != "" && array[3].value != "")) {
+      if ((array[0].value != "" && array[1].value != "") || (array[2].value != "" && array[3].value != "")) {
             expensesBtn.style.backgroundImage =
               "linear-gradient(336deg,#ffbd75,#ff964b),linear-gradient(#fff,#fff)";
               expensesBtn.disabled = false;
               countBtn.style.backgroundImage =
               "linear-gradient(336deg,#ffbd75,#ff964b),linear-gradient(#fff,#fff)";
               countBtn.disabled = false;
-      } else {
-        expensesBtn.disabled = true;
-        expensesBtn.style.backgroundImage = "none";
-        countBtn.disabled = true;
-        countBtn.style.backgroundImage = "none";
-      }
-  });
+      } 
+      if ((array[0].value == "" && array[1].value != "" && array[2].value != "" && array[3].value != "") || (array[0].value != "" && array[1].value == ""  && array[2].value != "" && array[3].value != "") || (array[0].value != "" && array[1].value != ""  && array[2].value == "" && array[3].value != "") || (array[0].value != "" && array[1].value != ""  && array[2].value != "" && array[3].value == "")) {
+      
+          expensesBtn.disabled = true;
+          expensesBtn.style.backgroundImage = "none";
+          countBtn.disabled = true;
+          countBtn.style.backgroundImage = "none";
+        }  
+      });
 });
 
+expensesBtn.addEventListener('click', function() {
+  expensesValue.textContent = '';
+  let sum = 0;
+
+  for (let i = 0; i < expensesItemInput.length; i++) {
+    let a = expensesItemInput[i].value,
+      b = expensesItemInput[++i].value;
+    
+    if (typeof(a) === 'string' && typeof(a) != null && typeof(b) != null && isNaN(b) == false && b >= 0 && a != '' && b != '' && a.length < 50) {
+      appData.expenses[a] = b;
+      sum += +b;
+    } 
+  }
+  expensesValue.textContent = sum;
+});
+
+// не обязательные расходы
+optExpensesInput.forEach(function (item, i, array) {
+  item.addEventListener('input', function () {
+  // кнопка активная, если заполнено хотя бы одно любое поле
+        if (array[0].value != "" || array[1].value != "" ||
+        array[2].value != "") {
+        optExpensesBtn.style.backgroundImage = "linear-gradient(336deg,#ffbd75,#ff964b),linear-gradient(#fff,#fff)";
+          optExpensesBtn.disabled = false;
+      } 
+      if (array[0].value == "" && array[1].value == "" &&
+      array[2].value == "") {
+        optionalExpensesValue.textContent = ''; //если все инпуты не обязательных обнулили обнуляем и в поле возможные траты
+        optExpensesBtn.disabled = true;
+        optExpensesBtn.style.backgroundImage = "none";
+      }
+    });
+});
 optExpensesBtn.addEventListener('click', function() {
+  optionalExpensesValue.textContent = ""; //обнуляем на случай повторного нажатия кнопки
   for (let i = 0; i < optExpensesInput.length; i++) {
+    if (optExpensesInput[i] != null) {
+      optExpensesBtn.disabled = false;
+      optExpensesBtn.style.backgroundImage = "linear-gradient(336deg,#ffbd75,#ff964b),linear-gradient(#fff,#fff)";
     let opt = optExpensesInput[i].value;
         appData.optionalExpenses[i] = opt;
         optionalExpensesValue.textContent += appData.optionalExpenses[i] + " ";
     }
+  }
 });
 
 countBtn.addEventListener('click', function() {
